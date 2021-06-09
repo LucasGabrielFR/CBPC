@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::prefix('admin')
+        ->group(function() {
+
+            /**
+             * Routes Posicoes
+             */
+
+            Route::resource('posicoes',Admin\PosicaoController::class);
+
+            /**
+             * Routes Jogadores
+             */
+
+            Route::resource('jogadores',Admin\JogadorController::class);
+
+
+        });
