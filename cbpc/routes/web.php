@@ -22,13 +22,13 @@ Route::prefix('admin')
              * Routes Posicoes
              */
 
-            Route::resource('posicoes',Admin\PosicaoController::class);
+            Route::resource('posicoes',Admin\PositionController::class);
 
             /**
              * Routes Jogadores
              */
 
-            Route::resource('jogadores',Admin\JogadorController::class);
+            Route::resource('jogadores',Admin\PlayerController::class);
 
 
         });

@@ -3,18 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Posicao;
+use App\Models\Player;
 use Illuminate\Http\Request;
 
-class PosicaoController extends Controller
+class PlayerController extends Controller
 {
-
     protected $repository;
 
-    public function __construct(Posicao $posicao){
-        $this->repository = $posicao;
+    public function __construct(Player $jogador){
+        $this->repository = $jogador;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +20,8 @@ class PosicaoController extends Controller
      */
     public function index()
     {
-        $posicoes = $this->repository->all();
-        return view('admin.pages.posicoes.index',compact('posicoes'));
+        $jogadores = $this->repository->all();
+        return view('admin.pages.jogadores.index',compact('jogadores'));
     }
 
     /**
@@ -33,8 +31,7 @@ class PosicaoController extends Controller
      */
     public function create()
     {
-        $posicoes = $this->repository->all();
-        return view('admin.pages.posicoes.create');
+        //
     }
 
     /**
@@ -45,8 +42,7 @@ class PosicaoController extends Controller
      */
     public function store(Request $request)
     {
-        $this->repository->create($request->all());
-        return redirect()->route('posicoes.index');
+        //
     }
 
     /**
@@ -68,15 +64,7 @@ class PosicaoController extends Controller
      */
     public function edit($id)
     {
-        $posicao = $this->repository->where('id',$id)->first();
-
-        if(!$posicao){
-            return redirect()->back();
-        }else{
-            return view('admin.pages.posicoes.edit',[
-                'posicao' => $posicao
-            ]);
-        }
+        //
     }
 
     /**
@@ -88,14 +76,7 @@ class PosicaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $posicao = $this->repository->where('id',$id)->first();
-
-        if(!$posicao){
-            return redirect()->back();
-        }else{
-            $posicao->update($request->all());
-            return redirect()->route('posicoes.index');
-        }
+        //
     }
 
     /**
@@ -106,14 +87,6 @@ class PosicaoController extends Controller
      */
     public function destroy($id)
     {
-        $posicao = $this->repository->where('id',$id)->first();
-
-        if(!$posicao){
-            return redirect()->back();
-        }else{
-            $posicao->delete();
-
-            return redirect()->route('posicoes.index');
-        }
+        //
     }
 }
