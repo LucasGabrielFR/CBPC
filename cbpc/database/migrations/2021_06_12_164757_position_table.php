@@ -29,6 +29,6 @@ class PositionTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('positions');
     }
 }

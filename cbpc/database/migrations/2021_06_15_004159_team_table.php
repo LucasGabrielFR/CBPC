@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class PlayerTable extends Migration
+class TeamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,24 @@ class PlayerTable extends Migration
      */
     public function up()
     {
-        Schema::create('players', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id('id');
             $table->string('nome');
-            $table->string('cidade');
+            $table->string('sigla');
+            $table->string('emblema');
             $table->string('estado');
-            $table->string('cpf')->unique();
             $table->string('contato');
-            $table->string('imagem');
-            $table->integer('codigo_transf')->unique();
-            $table->integer('status');
+            $table->string('descricao');
+            $table->integer('gols');
+            $table->integer('gols_sofridos');
+            $table->integer('vitorias');
+            $table->integer('empates');
+            $table->integer('derrotas');
+            $table->integer('titulos');
             $table->integer('pontuacao');
-            $table->date('data_nascimento');
-            $table->unsignedBigInteger('idUser');
+            $table->tinyInteger('recrutando');
+            $table->date('data_fundacao');
             $table->timestamps();
-
-            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -39,6 +41,6 @@ class PlayerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('players');
+        Schema::dropIfExists('teams');
     }
 }
