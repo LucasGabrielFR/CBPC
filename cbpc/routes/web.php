@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\ACL;
 
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,14 @@ Route::prefix('admin')
              */
 
             Route::resource('jogadores',Admin\PlayerController::class);
+
+            /**
+             * Routes Permissões
+             */
+
+            Route::resource('permissoes',ACL\PermissionController::class);
+
+
 
 
         });

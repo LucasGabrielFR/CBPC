@@ -272,6 +272,11 @@ return [
                 ],
             ],
         ],
+        [
+            'text'        => 'Permissões',
+            'url'         => 'admin/permissoes',
+            'icon'        => 'fas fa-fw fa-key',
+        ],
         // ['header' => 'labels'],
         // [
         //     'text'       => 'important',
