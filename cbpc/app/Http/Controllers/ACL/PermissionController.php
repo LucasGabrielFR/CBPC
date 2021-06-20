@@ -35,6 +35,7 @@ class PermissionController extends Controller
     {
         $permissions = $this->repository->all();
         return view('admin.pages.permissoes.create');
+
     }
 
     /**
@@ -45,7 +46,8 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->repository->create($request->all());
+        return redirect()->route('permissoes.index');
     }
 
     /**
@@ -67,7 +69,15 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permission = $this->repository->where('id',$id)->first();
+
+        if(!$permission){
+            return redirect()->back();
+        }else{
+            return view('admin.pages.permissoes.edit',[
+                'permission' => $permission
+            ]);
+        }
     }
 
     /**
@@ -79,7 +89,14 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $permission = $this->repository->where('id',$id)->first();
+
+        if(!$permission){
+            return redirect()->back();
+        }else{
+            $permission->update($request->all());
+            return redirect()->route('permissoes.index');
+        }
     }
 
     /**
@@ -90,6 +107,14 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $permission = $this->repository->where('id',$id)->first();
+
+        if(!$permission){
+            return redirect()->back();
+        }else{
+            $permission->delete();
+
+            return redirect()->route('permissoes.index');
+        }
     }
 }

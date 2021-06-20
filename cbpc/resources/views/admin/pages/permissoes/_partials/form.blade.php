@@ -10,10 +10,10 @@
 <div class="form-group">
     <label>Nível da Permissão</label>
     <select class="form-control" name="nivel">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+        <option value="0" @if ($permission->nivel == 0) selected @endif >0</option>
+        <option value="1" @if ($permission->nivel == 1) selected @endif >1</option>
+        <option value="2" @if ($permission->nivel == 2) selected @endif >2</option>
+        <option value="3" @if ($permission->nivel == 3) selected @endif >3</option>
     </select>
 </div>
 <div class="form-group">
