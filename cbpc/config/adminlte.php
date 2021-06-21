@@ -273,9 +273,21 @@ return [
             ],
         ],
         [
-            'text'        => 'Permissões',
-            'url'         => 'admin/permissoes',
+            'text'        => 'Perfis',
+            'url'         => 'admin/perfis',
             'icon'        => 'fas fa-fw fa-key',
+            'submenu' => [
+                [
+                    'text' => 'Ver todos',
+                    'url'  => 'admin/perfis',
+                    'icon'    => 'fas fa-fw fa-clipboard-list',
+                ],
+                [
+                    'text' => 'Permissões',
+                    'url'  => 'admin/permissoes',
+                    'icon'    => 'fas fa-fw fa-clipboard-list',
+                ],
+            ],
         ],
         // ['header' => 'labels'],
         // [

@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\ACL;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Permission;
 use Illuminate\Http\Request;
+use App\Models\Profile;
 
-class PermissionController extends Controller
+class ProfileController extends Controller
 {
 
-    protected $repository;
-
-    public function __construct(Permission $permission){
-        $this->repository = $permission;
+    public function __construct(Profile $profile){
+        $this->repository = $profile;
     }
 
     /**
@@ -22,8 +20,8 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        $permissions = $this->repository->all();
-        return view('admin.pages.permissoes.index',compact('permissions'));
+        $profiles = $this->repository->all();
+        return view('admin.pages.perfis.index',compact('profiles'));
     }
 
     /**
@@ -33,7 +31,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.permissoes.create');
+        return view('admin.pages.perfis.create');
     }
 
     /**
@@ -45,7 +43,7 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $this->repository->create($request->all());
-        return redirect()->route('permissoes.index');
+        return redirect()->route('perfis.index');
     }
 
     /**
@@ -56,7 +54,7 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -67,13 +65,13 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        $permission = $this->repository->where('id',$id)->first();
+        $profile = $this->repository->where('id',$id)->first();
 
-        if(!$permission){
+        if(!$profile){
             return redirect()->back();
         }else{
-            return view('admin.pages.permissoes.edit',[
-                'permission' => $permission
+            return view('admin.pages.perfis.edit',[
+                'profile' => $profile
             ]);
         }
     }
@@ -87,13 +85,13 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $permission = $this->repository->where('id',$id)->first();
+        $profile = $this->repository->where('id',$id)->first();
 
-        if(!$permission){
+        if(!$profile){
             return redirect()->back();
         }else{
-            $permission->update($request->all());
-            return redirect()->route('permissoes.index');
+            $profile->update($request->all());
+            return redirect()->route('perfis.index');
         }
     }
 
@@ -105,14 +103,14 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        $permission = $this->repository->where('id',$id)->first();
+        $profile = $this->repository->where('id',$id)->first();
 
-        if(!$permission){
+        if(!$profile){
             return redirect()->back();
         }else{
-            $permission->delete();
+            $profile->delete();
 
-            return redirect()->route('permissoes.index');
+            return redirect()->route('perfis.index');
         }
     }
 }

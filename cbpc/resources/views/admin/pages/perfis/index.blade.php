@@ -8,10 +8,10 @@ $heads = [
 @endphp
 @extends('adminlte::page')
 
-@section('title', 'Permissoes')
+@section('title', 'Perfis')
 
 @section('content_header')
-    <h1>Permissões <a href="{{ route('permissoes.create') }}" class="btn btn-success"><i class="fa fa-lg fa-fw fa-plus"></i></a></h1>
+    <h1>Perfis <a href="{{ route('perfis.create') }}" class="btn btn-success"><i class="fa fa-lg fa-fw fa-plus"></i></a></h1>
 @stop
 
 
@@ -19,34 +19,37 @@ $heads = [
 @section('content')
 <div class="card">
     <div class="card-header">
-        Permissões
+        Perfis
     </div>
     <div class="card-body">
         <x-adminlte-datatable id="table2" :heads="$heads" head-theme="dark"
         striped hoverable bordered compressed>
-        @foreach ($permissions as $permission)
+        @foreach ($profiles as $profile)
             <tr>
                 <td>
-                    {{ $permission->id }}
+                    {{ $profile->id }}
                 </td>
                 <td>
-                    {{ $permission->nome }}
+                    {{ $profile->nome }}
                 </td>
                 <td>
                     <div class="row">
-                        <a class="btn btn-xs btn-default text-primary mx-1 shadow align-self-center" href="{{ route('permissoes.edit',$permission->id) }}">
+                        <a class="btn btn-xs btn-default text-primary mx-1 shadow align-self-center" href="{{ route('perfis.edit',$profile->id) }}">
                             <i class="fa fa-lg fa-fw fa-pen"></i>
                         </a>
+                        <a class="btn btn-xs btn-default text-success mx-1 shadow align-self-center" href="{{ route('perfil.permissoes',$profile->id) }}">
+                            <i class="fa fa-lg fa-fw fa-lock"></i>
+                        </a>
 
-                        <x-adminlte-button data-toggle="modal" data-target="#modalExcluir{{ $permission->id }}" theme="default" icon="fa fa-trash" class="btn btn-default text-danger mx-1 shadow"/>
+                        <x-adminlte-button data-toggle="modal" data-target="#modalExcluir{{ $profile->id }}" theme="default" icon="fa fa-trash" class="btn btn-default text-danger mx-1 shadow"/>
                     </div>
                 </td>
             </tr>
-            <x-adminlte-modal id="modalExcluir{{ $permission->id }}" title="Confirmar Exclusão" size="sm" theme="danger"
+            <x-adminlte-modal id="modalExcluir{{ $profile->id }}" title="Confirmar Exclusão" size="sm" theme="danger"
             icon="fas fa-trash" v-centered static-backdrop scrollable>
-                Você deseja realmente excluir <b>{{ $permission->nome }}</b>?
+                Você deseja realmente excluir <b>{{ $profile->nome }}</b>?
                 <x-slot name="footerSlot">
-                    <form action="{{ route('permissoes.destroy',$permission->id) }}" method="POST">
+                    <form action="{{ route('perfis.destroy',$profile->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <x-adminlte-button class="mr-auto" theme="danger" label="Excluir" type="submit"/>

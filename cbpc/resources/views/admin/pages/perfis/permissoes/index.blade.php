@@ -6,12 +6,13 @@ $heads = [
 ];
 
 @endphp
+
 @extends('adminlte::page')
 
-@section('title', 'Permissoes')
+@section('title', 'Permissoes do Perfil')
 
 @section('content_header')
-    <h1>Permissões <a href="{{ route('permissoes.create') }}" class="btn btn-success"><i class="fa fa-lg fa-fw fa-plus"></i></a></h1>
+    <h1>Permissoes do perfil {{ $profile->name }} <a class="btn btn-success"><i class="fa fa-lg fa-fw fa-plus"></i></a></h1>
 @stop
 
 
@@ -19,7 +20,7 @@ $heads = [
 @section('content')
 <div class="card">
     <div class="card-header">
-        Permissões
+        Permissoes do Perfil {{ $profile->name }}
     </div>
     <div class="card-body">
         <x-adminlte-datatable id="table2" :heads="$heads" head-theme="dark"
@@ -34,8 +35,11 @@ $heads = [
                 </td>
                 <td>
                     <div class="row">
-                        <a class="btn btn-xs btn-default text-primary mx-1 shadow align-self-center" href="{{ route('permissoes.edit',$permission->id) }}">
+                        <a class="btn btn-xs btn-default text-primary mx-1 shadow align-self-center" href="{{ route('perfis.edit',$permission->id) }}">
                             <i class="fa fa-lg fa-fw fa-pen"></i>
+                        </a>
+                        <a class="btn btn-xs btn-default text-success mx-1 shadow align-self-center" href="{{ route('perfil.permissoes',$permission->id) }}">
+                            <i class="fa fa-lg fa-fw fa-lock"></i>
                         </a>
 
                         <x-adminlte-button data-toggle="modal" data-target="#modalExcluir{{ $permission->id }}" theme="default" icon="fa fa-trash" class="btn btn-default text-danger mx-1 shadow"/>
@@ -46,7 +50,7 @@ $heads = [
             icon="fas fa-trash" v-centered static-backdrop scrollable>
                 Você deseja realmente excluir <b>{{ $permission->nome }}</b>?
                 <x-slot name="footerSlot">
-                    <form action="{{ route('permissoes.destroy',$permission->id) }}" method="POST">
+                    <form action="{{ route('perfis.destroy',$permission->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <x-adminlte-button class="mr-auto" theme="danger" label="Excluir" type="submit"/>

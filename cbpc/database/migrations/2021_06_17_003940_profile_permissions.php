@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UserPermissions extends Migration
+class ProfilePermissions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class UserPermissions extends Migration
      */
     public function up()
     {
-        Schema::create('user_permissions', function (Blueprint $table) {
+        Schema::create('permission_profile', function (Blueprint $table) {
             $table->unsignedBigInteger('idPermissao');
-            $table->unsignedBigInteger('idUser');
+            $table->unsignedBigInteger('idPerfil');
 
             $table->foreign('idPermissao')->references('id')->on('permissions')->onDelete('cascade');
-            $table->foreign('idUser')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('idPerfil')->references('id')->on('profiles')->onDelete('cascade');
         });
     }
 

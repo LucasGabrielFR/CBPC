@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {
-    protected $fillable = ['nome','descricao','nivel'];
+    protected $fillable = ['nome','descricao'];
+
+    /**
+     *  Get Profile
+     */
+
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
 }

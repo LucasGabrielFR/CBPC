@@ -32,11 +32,22 @@ Route::prefix('admin')
             Route::resource('jogadores',Admin\PlayerController::class);
 
             /**
+             * Routes Perfis
+             */
+
+            Route::resource('perfis',Admin\ProfileController::class);
+
+            /**
              * Routes Permissões
              */
 
             Route::resource('permissoes',ACL\PermissionController::class);
 
+            /**
+             * Permission x Profile
+             */
+
+             Route::get('perfis/{id}/permissions',[ACL\PermissionProfileController::class,'permissions'])->name('perfil.permissoes');
 
 
 
