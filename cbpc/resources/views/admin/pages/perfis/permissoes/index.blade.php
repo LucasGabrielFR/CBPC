@@ -12,7 +12,7 @@ $heads = [
 @section('title', 'Permissoes do Perfil')
 
 @section('content_header')
-    <h1>Permissoes do perfil {{ $profile->name }} <a class="btn btn-success"><i class="fa fa-lg fa-fw fa-plus"></i></a></h1>
+    <h1>Permissoes do perfil:  <b>{{ $profile->nome }}</b> <a href="{{ route('perfil.add.permissao',$profile->id) }}" class="btn btn-success"><i class="fa fa-lg fa-fw fa-plus"></i></a></h1>
 @stop
 
 
@@ -20,7 +20,7 @@ $heads = [
 @section('content')
 <div class="card">
     <div class="card-header">
-        Permissoes do Perfil {{ $profile->name }}
+        Permissoes do Perfil: {{ $profile->nome }}
     </div>
     <div class="card-body">
         <x-adminlte-datatable id="table2" :heads="$heads" head-theme="dark"

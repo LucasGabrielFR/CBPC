@@ -48,6 +48,8 @@ Route::prefix('admin')
              */
 
              Route::get('perfis/{id}/permissions',[ACL\PermissionProfileController::class,'permissions'])->name('perfil.permissoes');
+             Route::get('perfis/{id}/permissions/add',[ACL\PermissionProfileController::class,'permissionAdd'])->name('perfil.add.permissao');
+             Route::post('perfis/{id}/permissions/add',[ACL\PermissionProfileController::class,'permissionStore'])->name('perfil.store.permissoes');
 
 
 
